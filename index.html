@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hello World</title>
+  
+  <link rel="manifest" href="manifest.json">
+  <script src="index.js"></script>
+  <script>
+
+        window.addEventListener('load',()=>{
+    fetchPage();
+    registerSW();
+});
+
+async function fetchPage()
+{
+  const res={"name":"name4"}
+  // const res = fetch(topHeadlineUrl);
+    // const json = await res.json();
+    const main = document.querySelector("main");
+
+    console.log("Page Fetch")
+}
+
+
+async function registerSW()
+{
+  if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js', {
+            scope: '.' // <--- THIS BIT IS REQUIRED
+        }).then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+        }, function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+        });
+    }
+    // console.log("Page Fetch")
+    // if('serviceWorker' in navigator)
+    // {
+    //     try{
+    //        await navigator.serviceWorker.register('service-worker.js');
+    //        console.log("reg")
+    //     }
+    //     catch(e)
+    //     {
+    //         console.log('SW Reg Failed')
+    //     }
+    // }
+}
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  // Stash the event so it can be triggered later.
+  deferredPrompt = e;
+  showInstallPromotion();
+});
+        </script>
+  <!-- <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="images/hello-icon-152.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="white"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Hello World">
+  <meta name="msapplication-TileImage" content="images/hello-icon-144.png">
+  <meta name="msapplication-TileColor" content="#FFFFFF"> -->
+  <style>
+      body {
+  font-family: sans-serif;
+}
+
+/* Make content area fill the entire browser window */
+html,
+.fullscreen {
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+/* Center the content in the browser window */
+.container {
+  margin: auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 3rem;
+}
+  </style>
+</head>
+<body class="fullscreen">
+  <div class="container">
+    <h1 class="title">Hello World!</h1>
+  </div>
+  <!-- <script src="js/main.js"></script> -->
+</body>
+</html>
